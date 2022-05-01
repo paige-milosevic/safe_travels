@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,16 +24,21 @@ public class Expense {
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
-	    @NotNull
-	    @Size(min = 1, max = 200)
+	    
+	    @NotBlank
+	    @Size(min = 1, max = 200, message="Expense name is required!")
 	    private String expenseName;
-	    @NotNull
-	    @Size(min = 1, max = 200)
+	    
+	    @NotBlank
+	    @Size(min = 1, max = 200, message="Vendor is required!")
 	    private String vendor;
-	    @NotNull
-	    @Size(min = 1, max = 400)
+	    
+	    @NotBlank
+	    @Size(min = 1, max = 400, message="Description is required!")
 	    private String description;
-	    @NotNull
+	    
+	    @NotNull(message="Amount is required!")
+	    @Min(value = 0, message="Amount must be greater than zero!")
 	    private Double ammount;
 
 	    

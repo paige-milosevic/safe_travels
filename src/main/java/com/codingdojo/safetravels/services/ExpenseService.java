@@ -25,9 +25,20 @@ public class ExpenseService {
 		return expenseRepository.save(expense);
 	}
 
-	// Edit Expense
+	// Find One Expense
 	public Expense oneExpense(Long id) {
 		return expenseRepository.findById(id).orElse(null);
 	}
+	
+	// Update Expense
+	public void updateExpense(Expense expense) {
+		expenseRepository.save(expense);
+	}
+	
+	// Delete Expense
+	public void deleteExpense(Long id) {
+		expenseRepository.deleteById(id);
+	}
+	
 	
 }
