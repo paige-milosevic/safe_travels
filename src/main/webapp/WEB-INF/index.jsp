@@ -25,10 +25,14 @@
 			<tbody>
 			<c:forEach items="${expenses}" var="expense">
 				<tr>
-					<td><c:out value="${expense.expenseName}"></c:out></td>
+					<td><a href="/expense/${expense.id}"><c:out value="${expense.expenseName}"></c:out></a></td>
 					<td><c:out value="${expense.vendor}"></c:out></td>
 					<td>$<c:out value="${expense.ammount}"></c:out></td>
-					<td><p><a href="/expense/edit/${expense.id}">Edit</a> | <a href="/delete/${expense.id}">Delete</a></p></td>
+					<td><a href="/expense/edit/${expense.id}">Edit</a>
+					<form:form action="/delete/${expense.id}" method="delete">
+					 <button>Delete</button>
+					 </form:form>
+					 </td>
 					
 					
 					
@@ -40,7 +44,6 @@
 	<div class="container">
 		<h1>Add an Expense:</h1>
 		<form:form action="/expenses" method="POST" modelAttribute="expense">
-			<input type="hidden" name="_method" value="delete">
 			<p class="form-group row"> 
 				<form:label class="col-sm-2 col-form-label" path="expenseName">Expense Name:</form:label>
 				<form:input path="expenseName" type="text"/>

@@ -54,6 +54,13 @@ public class HomeController {
 
 	}
 	
+	@GetMapping("/expense/{id}")
+	public String expenseDetail(@PathVariable("id") Long id, Model model) {
+		Expense expense = expenseService.oneExpense(id);
+		model.addAttribute("expense",expense);
+		return "detailsExpense.jsp";
+	}
+	
 	@GetMapping("/expense/edit/{id}")
 	public String editExpense(@PathVariable("id") Long id, Model model) {
 		Expense expense = expenseService.oneExpense(id);
